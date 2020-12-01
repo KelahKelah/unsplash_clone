@@ -10,13 +10,14 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: []
+        data: {}
         };
     }
     componentDidMount() {
         Axios.get('/photos')
         .then((res) => {
-            console.log('responseee', res)
+            console.log('res',res.data)
+            this.setState({data:res.data})
         })
         .catch((errors) => {
             console.log('erroooor', errors)
@@ -28,24 +29,19 @@ class Home extends Component {
         return(
             <div className="home-wrapper"> 
                 <div className="container search-bar-wrapper">
-                    <div className="row">
-                        <div className="col 12">
-                            <SearchBar/>
-                        </div>
+                    <div className="">
+                        <SearchBar/>
                     </div>
                 </div>
 
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-4 item">
-                            <img className="imgItem" src={Img} alt="img" />
-                        </div>
-                        <div className="col-md-4 item">
-                            <img className="imgItem" src={Img} alt="img" />
-                        </div>                        
-                        <div className="col-md-4 item">
-                            <img className="imgItem" src={Img} alt="img" />
-                        </div>                    
+                <div className="img-list-wrapper ">
+                    <div className="img-list-container">{this.state.data.length > 0 && this.state.data.map((item, ind) => {
+                        return(
+                            <div className="item" key={ind}>
+                                <img className="imgItem" src={item.urls.full} alt="img" />
+                            </div>
+                        )
+                    })}
                     </div>
                 </div>
             </div>
