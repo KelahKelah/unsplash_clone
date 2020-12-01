@@ -30,7 +30,7 @@ class Home extends Component {
             <div className="home-wrapper"> 
                 <div className="container search-bar-wrapper">
                     <div className="">
-                        <SearchBar/>
+                        <SearchBar data={this.state.data} />
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@ class Home extends Component {
                     <div className="img-list-container">{this.state.data.length > 0 && this.state.data.map((item, ind) => {
                         return(
                             <div className="item" key={ind}>
-                                <img className="imgItem" src={item.urls.full} alt="img" />
+                                <img className="imgItem" src={item.urls.full || item.urls.regular || item.url.raw} alt="img" />
                             </div>
                         )
                     })}
