@@ -8,8 +8,8 @@ const Routes = () => {
         <div>
             <BrowserRouter>
             <Switch>
-                <Route path="/" component={Home} />
-                <Route path="/single/photo" component={SinglePhoto} />
+                <Route exact path="/" component={Home} />
+                <Route path="/photos/:id" component={SinglePhoto} />
             </Switch>
             </BrowserRouter>
         </div>
