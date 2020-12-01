@@ -7,9 +7,12 @@ class ImgCard extends Component {
 
     render() {
         return(
-            <div>
-                
+            <div className="container-fluid search-bar-wrapper">
+                <div className="row">
+                    <img className="imgItem" src={Img} alt="img" />
+                </div>
             </div>
+
         )
     }
 }
