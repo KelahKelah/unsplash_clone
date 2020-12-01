@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Axios from 'axios';
+
+Axios.defaults.baseURL = 'https://api.unsplash.com/';
+Axios.defaults.headers.common['Accept-Version'] = 'v1';
+Axios.defaults.headers.common['Authorization'] = 'Client-ID b_mbJ8S-i9Pnv_AEdqiIhNMYF-mIoD0p9owAjYUcyU8';
+
+// console.log('axios',Axios.defaults.headers)
 
 ReactDOM.render(
   <React.StrictMode>
