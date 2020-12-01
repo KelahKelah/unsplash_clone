@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import  Axios from 'axios';
-import './home.css'
-import Img from '../../assets/testImg.png'
+import './home.css';
+import Img from '../../assets/testImg.png';
+import SearchBar from '../../components/searchBar/searchBar';
+
+
 class Home extends Component {
 
     constructor(props) {
@@ -10,13 +13,25 @@ class Home extends Component {
             data: []
         };
     }
+    componentDidMount() {
+        Axios.get('/photos')
+        .then((res) => {
+            console.log('responseee', res)
+        })
+        .catch((errors) => {
+            console.log('erroooor', errors)
+        })
+        // this.setState({data:})
+    }
 
     render() {
         return(
-            <div>
-                <div className="container-fluid search-bar-wrapper">
+            <div className="home-wrapper"> 
+                <div className="container search-bar-wrapper">
                     <div className="row">
-                        <div className="col 12">Search bar here</div>
+                        <div className="col 12">
+                            <SearchBar/>
+                        </div>
                     </div>
                 </div>
 
