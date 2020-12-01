@@ -1,9 +1,27 @@
-
 .search-bar-wrapper {
     background-color: #c7d9eb;
     height: 35%;
-    padding: 4rem;
+    padding: 4.5rem;
+    border-radius: 0.2rem;
+}
+
+.img-list-wrapper {
+    width: 72%;
+    margin: auto;
+    /* background-color: aqua; */
+}
+.img-list-container {
+    /* background-color: blue; */
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.item {
+    width: 30%;
+    margin: auto;
+    /* background-color: blueviolet; */
 }
 .imgItem {
-width: 20rem;
+    width: 17rem;
 }
