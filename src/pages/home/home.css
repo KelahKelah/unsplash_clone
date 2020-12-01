@@ -1,6 +1,8 @@
+
 .search-bar-wrapper {
     background-color: #c7d9eb;
-    height: 5%;
+    height: 35%;
+    padding: 4rem;
 }
 .imgItem {
 width: 20rem;
