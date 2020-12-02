@@ -9,7 +9,8 @@ class SearchBar extends Component {
         super(props)
         this.state = {
             search: '',
-            searchResult : []
+            searchResult : [],
+            searchIsReady : false
         }
     }
 
@@ -24,6 +25,7 @@ class SearchBar extends Component {
             if(res.status===200) {
                 this.setState({searchResult: res.data.results})
                 this.props.handleData(this.state.searchResult)
+                this.setState({searchIsReady: true})
             }
             })
         .catch((err) => {
@@ -36,7 +38,7 @@ class SearchBar extends Component {
     render() {
         return(
             <div className="field-container">
-                {this.state.searchResult? <p>{`Search result for ${this.state.search}` }</p> : ''}
+                {this.state.searchIsReady? <p>{`Search result for ${this.state.search}` }</p> : ''}
                 <form onSubmit={this.handleSearch} className="field-wrapper">
                     <div className="search-icon-wrapper p-2"> 
                       <BsSearch />
