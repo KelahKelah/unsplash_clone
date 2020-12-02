@@ -51,6 +51,7 @@ class Home extends Component {
                         return(
                             <div className="item" key={ind}>
                                 <img className="imgItem mx-2 my-2" src={item.urls.full || item.urls.regular || item.url.raw} alt="img" onClick={()=>{this.handlePhotoClick(item.id)}} />
+                                <p className="name-text">{`${item.user.first_name} ${item.user.last_name}`}</p>
                             </div>
                         )
                     })}

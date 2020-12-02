@@ -17,12 +17,19 @@
 .item {
     width: 30%;
     margin: auto;
+    position: relative;
 }
 .imgItem {
     width: 17rem;
 }
 .space {
 margin : 15px
+}
+.name-text {
+    color: #fff;
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
 }
 @media screen and (max-width:769px) {
     .search-bar-wrapper {
