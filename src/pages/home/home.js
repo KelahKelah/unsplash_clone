@@ -31,6 +31,7 @@ class Home extends Component {
     }
 
     render() {
+        console.log('im sending', this.state.data)
         return(
             <div className="home-wrapper"> 
                 <div className="container search-bar-wrapper">
