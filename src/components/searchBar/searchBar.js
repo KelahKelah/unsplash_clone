@@ -7,7 +7,8 @@ class SearchBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            search: ''
+            search: '',
+            searchResult : []
         }
     }
 
@@ -16,16 +17,45 @@ class SearchBar extends Component {
         console.log(this.state.search)
     }
 
+    handleSearch = (e) => {
+        e.preventDefault();
+        console.log('search input',this.state.search)
+        Axios.get(`/search/photos?query=${this.state.search}`)
+        .then((res) => {
+            if(res.status===200) {
+                this.setState({searchResult: res.data.results})
+                console.log('resullltt',this.state.searchResult)
+
+            }
+            console.log('crazzzzzzzzzzy',res)})
+        .catch((err) => {
+            console.log(err)
+        })
+
+    }
+
     render() {
+        // console.log('data valllllllue',this.props.data)
         return(
             <div>
-                <form>
+                <form onSubmit={this.handleSearch}>
                     <BsSearch />
                     <input type="text" className="searchBar" placeholder="Search for photo" onChange={this.onchange} />
                 </form>
+
+                
             </div>
         )
     }
 }
 
 export default SearchBar;
+
+   // this.props.data.filter((item,ind) => {
+        //     if(this.state.search !== '' && this.state.search == item.user.first_name) {
+        //         return item.user.first_name
+        //     } else {
+        //         console.log('222222222222',item)
+        //     }
+
+        // })

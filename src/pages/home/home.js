@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import  Axios from 'axios';
 import './home.css';
 import Img from '../../assets/testImg.png';
@@ -22,15 +23,20 @@ class Home extends Component {
         .catch((errors) => {
             console.log('erroooor', errors)
         })
-        // this.setState({data:})
+    }
+
+    handlePhotoClick = (id) => {
+        console.log('',this.props.history);
+        this.props.history.push(`/photos/${id}`)
     }
 
     render() {
+        console.log('im sending', this.state.data)
         return(
             <div className="home-wrapper"> 
                 <div className="container search-bar-wrapper">
                     <div className="">
-                        <SearchBar/>
+                        <SearchBar data={this.state.data} />
                     </div>
                 </div>
 
@@ -38,7 +44,7 @@ class Home extends Component {
                     <div className="img-list-container">{this.state.data.length > 0 && this.state.data.map((item, ind) => {
                         return(
                             <div className="item" key={ind}>
-                                <img className="imgItem" src={item.urls.full} alt="img" />
+                                <img className="imgItem" src={item.urls.full || item.urls.regular || item.url.raw} alt="img" onClick={()=>{this.handlePhotoClick(item.id)}} />
                             </div>
                         )
                     })}
@@ -49,4 +55,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default withRouter(Home);
