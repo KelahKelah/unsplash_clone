@@ -15,20 +15,17 @@ class SearchBar extends Component {
 
     onchange = (e) => {
         this.setState({search:e.target.value})
-        console.log(this.state.search)
     }
 
     handleSearch = (e) => {
         e.preventDefault();
-        console.log('search input',this.state.search)
         Axios.get(`/search/photos?query=${this.state.search}`)
         .then((res) => {
             if(res.status===200) {
                 this.setState({searchResult: res.data.results})
-                console.log('resullltt',this.state.searchResult)
                 this.props.handleData(this.state.searchResult)
             }
-            console.log('crazzzzzzzzzzy',res)})
+            })
         .catch((err) => {
             console.log(err)
         })
@@ -37,16 +34,16 @@ class SearchBar extends Component {
 
 
     render() {
-        console.log('new search value',()=> {this.props.handleData(this.state.searchResult)})
-
         return(
-            <div>
-                <form onSubmit={this.handleSearch}>
-                    <BsSearch />
+            <div className="field-container">
+                {this.state.searchResult? <p>{`Search result for ${this.state.search}` }</p> : ''}
+                <form onSubmit={this.handleSearch} className="field-wrapper">
+                    <div className="search-icon-wrapper p-2"> 
+                      <BsSearch />
+                    </div>
                     <input type="text" className="searchBar" placeholder="Search for photo" onChange={this.onchange} />
                 </form>
 
-                
             </div>
         )
     }
@@ -54,11 +51,3 @@ class SearchBar extends Component {
 
 export default SearchBar;
 
-   // this.props.data.filter((item,ind) => {
-        //     if(this.state.search !== '' && this.state.search == item.user.first_name) {
-        //         return item.user.first_name
-        //     } else {
-        //         console.log('222222222222',item)
-        //     }
-
-        // })

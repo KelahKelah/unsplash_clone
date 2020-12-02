@@ -11,22 +11,24 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-        data: {}
+        data: {},
+        loader: false
         };
     }
     componentDidMount() {
+        this.setState({loader: true})
         Axios.get('/photos')
         .then((res) => {
-            console.log('res',res.data)
-            this.setState({data:res.data})
+            this.setState({data:res.data.slice(0,9)})
+            this.setState({loader: false})
         })
         .catch((errors) => {
             console.log('erroooor', errors)
         })
 
+
     }
     handlePhotoClick = (id) => {
-        console.log('',this.props.history);
         this.props.history.push(`/photos/${id}`)
     }
 
@@ -35,7 +37,6 @@ class Home extends Component {
     }
 
     render() {
-        console.log('im sending', this.state.data)
         return(
             <div className="home-wrapper"> 
                 <div className="container search-bar-wrapper">
@@ -43,17 +44,20 @@ class Home extends Component {
                         <SearchBar data={this.state.data} handleData={this.handleData} />
                     </div>
                 </div>
-
-                <div className="img-list-wrapper ">
+                {
+                this.state.loader? <div><Skeleton className="space" height="35vh" width="19vw" /><Skeleton className="space" height="35vh" width="19vw" margin="2rem" /><Skeleton className="space" height="35vh" width="19vw" margin="2rem" /></div> : 
+                 <div className="img-list-wrapper ">
                     <div className="img-list-container">{this.state.data.length > 0 && this.state.data.map((item, ind) => {
                         return(
                             <div className="item" key={ind}>
-                                <img className="imgItem" src={item.urls.full || item.urls.regular || item.url.raw} alt="img" onClick={()=>{this.handlePhotoClick(item.id)}} />
+                                <img className="imgItem mx-2 my-2" src={item.urls.full || item.urls.regular || item.url.raw} alt="img" onClick={()=>{this.handlePhotoClick(item.id)}} />
                             </div>
                         )
                     })}
                     </div>
                 </div>
+                }
+                             
             </div>
         )
     }

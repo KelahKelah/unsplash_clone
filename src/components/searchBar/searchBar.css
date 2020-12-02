@@ -1,6 +1,18 @@
 .searchBar {
-    width: 75%;
+    width: 70%;
     border-style:none;
     border-radius: 3px;
     padding: 0.9rem;
+}
+
+.field-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 80%;
+}
+.search-icon-wrapper {
+    background-color:#fff;
+    display: flex;
+    align-items: center;
 }

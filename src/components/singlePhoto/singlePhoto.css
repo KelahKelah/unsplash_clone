@@ -1,23 +1,42 @@
 .single-photo-wrapper {
 background-color: #f2f2f2;
 width: 100vw;
+height: 100vh;
+}
+.photo-flex {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color:#fff;
 }
 .single-photo-container {
 background-color: #8c8c8c;
+display: flex;
+align-items: center;
+/* align-self: center; */
 width: 60%;
+min-height: 70%;
+justify-content: center;
 margin: auto;
+border-radius: 0.2rem;
 }
 .main-photo {
     width: 50%;
-    height: 20%;
+    height: 300px;
 }
 .single-photo-text {
+    margin: auto;
     width: 50%;
     background-color: #fff;
+    border-radius: 0.2rem;
+    object-fit: contain;
 }
-.single-photo-text {
 
-}
-.photo-location {
-    
+@media screen and (max-width:376px) {
+
+    .photo-text-name{
+        font-size: 0.9em;
+        background-color: burlywood;
+    }
 }

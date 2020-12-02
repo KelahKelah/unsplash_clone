@@ -14,14 +14,9 @@ class SinglePhoto extends Component {
 
     componentDidMount() {
         const { match: { params } } = this.props;
-        console.log('params isssss', params)
-
         Axios.get(`/photos/${params.id}`)
         .then((res) => {
-            console.log(typeof res.data)
-            console.log('singlePhotores', res.data)
             this.setState({singlePhoto: {...res.data}})
-            console.log('value od singuuuuuuuu',this.state.singlePhoto)
         }).catch((err) => {
             console.log(err)
         })
@@ -31,13 +26,18 @@ class SinglePhoto extends Component {
         const {urls, user}  = this.state.singlePhoto;
         return(
             <div className="single-photo-wrapper">
+                <div className="photo-flex">
                 {/* <span className="close"></span> */}
-                <div className="single-photo-container">
-                    <img src={urls && urls.raw} alt="single-photo" className="main-photo" />
-                    <div className="single-photo-text">
-                        <h5 className="photo-text-name">{user && user.first_name}</h5>
-                        <p className="photo-location">{user && user.location}</p>
+                <div className="single-photo-container py-4">
+                    <div>
+                        <img src={urls && urls.raw} alt="single-photo" className="main-photo" />
+                        <div className="single-photo-text">
+                            <h5 className="photo-text-name py-1">{`${user && user.first_name} ${user && user.last_name}` }</h5>
+                            <p className="mb-0 photo-location">{user && user.location}</p>
+                        </div>
+                        {/* center */}
                     </div>
+                </div>
                 </div>
             </div>
         )
