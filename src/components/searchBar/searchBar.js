@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import  Axios from 'axios';
 import './searchBar.css';
-import {BsSearch} from 'react-icons/bs'
+import {BsSearch} from 'react-icons/bs';
+import Skeleton from 'react-loading-skeleton';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class SearchBar extends Component {
             if(res.status===200) {
                 this.setState({searchResult: res.data.results})
                 console.log('resullltt',this.state.searchResult)
-
+                this.props.handleData(this.state.searchResult)
             }
             console.log('crazzzzzzzzzzy',res)})
         .catch((err) => {
@@ -34,8 +35,10 @@ class SearchBar extends Component {
 
     }
 
+
     render() {
-        // console.log('data valllllllue',this.props.data)
+        console.log('new search value',()=> {this.props.handleData(this.state.searchResult)})
+
         return(
             <div>
                 <form onSubmit={this.handleSearch}>

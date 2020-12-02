@@ -1,14 +1,19 @@
 .single-photo-wrapper {
-background-color: blueviolet;
+background-color: #f2f2f2;
+width: 100vw;
 }
 .single-photo-container {
-background-color: brown;
+background-color: #8c8c8c;
+width: 60%;
+margin: auto;
 }
-.single-photo {
-
+.main-photo {
+    width: 50%;
+    height: 20%;
 }
 .single-photo-text {
-    background-color: blueviolet;
+    width: 50%;
+    background-color: #fff;
 }
 .single-photo-text {
 
