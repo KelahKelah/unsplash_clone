@@ -24,13 +24,13 @@ border-radius: 0.2rem;
 .main-photo {
     width: 50%;
     height: 300px;
+    object-fit: cover;
 }
 .single-photo-text {
     margin: auto;
     width: 50%;
     background-color: #fff;
     border-radius: 0.2rem;
-    object-fit: contain;
 }
 
 @media screen and (max-width:376px) {
