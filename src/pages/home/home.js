@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import  Axios from 'axios';
 import './home.css';
-import Img from '../../assets/testImg.png';
+import Skeleton from 'react-loading-skeleton';
 import SearchBar from '../../components/searchBar/searchBar';
 
 
@@ -23,11 +23,15 @@ class Home extends Component {
         .catch((errors) => {
             console.log('erroooor', errors)
         })
-    }
 
+    }
     handlePhotoClick = (id) => {
         console.log('',this.props.history);
         this.props.history.push(`/photos/${id}`)
+    }
+
+    handleData = (res) => {
+        this.setState({data: res})
     }
 
     render() {
@@ -36,7 +40,7 @@ class Home extends Component {
             <div className="home-wrapper"> 
                 <div className="container search-bar-wrapper">
                     <div className="">
-                        <SearchBar data={this.state.data} />
+                        <SearchBar data={this.state.data} handleData={this.handleData} />
                     </div>
                 </div>
 
