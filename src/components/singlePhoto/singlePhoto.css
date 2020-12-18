@@ -3,6 +3,10 @@ background-color: #f2f2f2;
 width: 100vw;
 height: 100vh;
 }
+.single-photo-wrapper-loader {
+    display: flex;
+    justify-content: center;
+}
 .photo-flex {
     display: flex;
     justify-content: center;
