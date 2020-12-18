@@ -27,6 +27,21 @@
 .App-link {
   color: #61dafb;
 }
+.img-card {
+  width: 150px;
+  height: 150px;
+}
+.par {
+  width: 100rem; 
+  display: flex;
+  justify-content: center;     
+}
+.check {
+  width: 15rem;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* background-color: cadetblue; */
+}
 
 @keyframes App-logo-spin {
   from {
