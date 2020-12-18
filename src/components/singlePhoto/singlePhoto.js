@@ -2,29 +2,44 @@ import React, {Component} from 'react';
 import  Axios from 'axios';
 import './singlePhoto.css';
 import Skeleton from 'react-loading-skeleton';
+Axios.defaults.timeout = 5000;
+
 
 
 class SinglePhoto extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            singlePhoto: {}
+            singlePhoto: {},
+            loader: false
         }
     }
 
     componentDidMount() {
         const { match: { params } } = this.props;
+        // SETTING LOADER FOR API CALL
+        this.setState({loader:true})
+
+        // CONFRIMATION FOR TOKEN BEFORE AXIOS CALL USING AXIOS INTERCEPTORS 
+        // Axios.interceptors.request.use((req) => {
+        //     if(Axios.defaults.headers.common['Authorization']) {
+        //         console.log('req val',req)
+        //         console.log('passed security check')
+        //     }
+        // })
         Axios.get(`/photos/${params.id}`)
         .then((res) => {
             this.setState({singlePhoto: {...res.data}})
+            this.setState({loader: false})
         }).catch((err) => {
-            console.log(err)
+            if(err) {
+                console.log(err)
+            }
         })
     }
     render() {
-        console.log('value of singleeee',this.state.singlePhoto)
         const {urls, user}  = this.state.singlePhoto;
-        return(
+        return this.state.loader? (<Skeleton className="single-photo-wrapper-loader" width="50vw" height="50vh" />) : (
             <div className="single-photo-wrapper">
                 <div className="photo-flex">
                 {/* <span className="close"></span> */}

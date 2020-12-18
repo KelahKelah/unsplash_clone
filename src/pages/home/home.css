@@ -30,6 +30,16 @@ margin : 15px
     position: absolute;
     bottom: 8px;
     left: 16px;
+    font-weight: 900 ;
+}
+.search-notification {
+    font-weight: 900;
+}
+.custom-skeleton-wrapper {
+    height: 20vh;
+    width: 20vw;
+    background-color: #d9d9d9;
+    border: 1px solid black;
 }
 @media screen and (max-width:769px) {
     .search-bar-wrapper {
