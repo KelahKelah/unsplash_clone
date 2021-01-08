@@ -7,29 +7,74 @@
 .img-list-wrapper {
     width: 72%;
     margin: auto;
+    /* background-color: purple; */
 }
 .img-list-container {
-    width: 80%;
+    width: 90%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    /* background-color: pink; */
 }
 .item {
     width: 30%;
-    margin: auto;
-    position: relative;
+    margin: 10px auto;
+    border: 1px solid #c7d9eb;
+    /* background-color: gold; */
 }
 .imgItem {
+    cursor: pointer;
     width: 17rem;
+    height: 20rem;
+    opacity: 1;
+    transition: 1s;
+    object-fit: cover;
+}
+.imgItem:hover {
+    opacity: 0.5;
+}
+.action-wrapper {
+    /* background-color: yellow; */
+    justify-content: space-around;
+}
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    background-color: #b4cce4;
+    border-radius: 50%;
+    border: #c7d9eb solid 1px;
+}
+.icon-wrapper:hover {
+    height: 55px;
+    width: 55px;
+    transition: 0.5s;
+}
+.action-icon {
+    /* text-align: center; */
+    font-size: 1.6em;
+    cursor: pointer;
+    color: #fff;
+}
+.after-action-icon {
+    color: #ff8080;
 }
 .space {
 margin : 15px
 }
+.yellow {
+    color: yellow
+}
+.red {
+    color: red
+}
 .name-text {
     color: #fff;
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
+    position: relative;
+    bottom: 70px;
+    /* left: 16px; */
     font-weight: 900 ;
 }
 .search-notification {
@@ -41,6 +86,26 @@ margin : 15px
     background-color: #d9d9d9;
     border: 1px solid black;
 }
+.pagination-button {
+     background-color: #c7d9eb;
+     border: 2px solid #fff;
+     border-radius: 3%;
+}
+/* LANDING ANIMATION  */
+.landing-animation {
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/* LANDING ANIMATION ENDS  */
 @media screen and (max-width:769px) {
     .search-bar-wrapper {
         background-color: #c7d9eb;
