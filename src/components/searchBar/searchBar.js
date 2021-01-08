@@ -19,28 +19,23 @@ class SearchBar extends Component {
     onchange = (event) => {
         this.setState({searchString:event.target.value})
         // if(this.state.searchString.length === 0 ) {
-        //     console.log('if block')
         //     this.setState({searchString: ''})
         // }
-        // console.log('event trace',event.keyCode,event.charCode,event.which)
     }
 
     // handleKeyPress = (e) => {
     //     window.addEventListener()
     //     if(e.code == 'Backspace') {
-    //         console.log('found it')
     //     }
     //     // if(e.code == 'Enter') {
-    //     //     console.log('enter')
     //     // }
-    //     console.log('key code event:',e,e.which, e.charCode, e.keyCode,'key:', e.key)
     // }
 
     handleSearch = (e) => {
         e.preventDefault();
+        
         // VALIDATION FOR SCRIPT INJECTIONS 
         if(this.state.searchString.indexOf('/') || this.state.searchString.indexof('@') || this.state.searchString.indexOf('|')) {
-            console.log('search word must be alphabet')
             this.setState({validation:false})
         } else if(this.state.searchString.indexOf('/')=== -1 || this.state.searchString.indexof('@')=== -1 || this.state.searchString.indexOf('|')=== -1) {
             alert('No scripts injected')
@@ -55,7 +50,6 @@ class SearchBar extends Component {
         .then((res) => {
             if(res.status===200) {
                  this.setState({searchResult: res.data.results});
-                console.trace('search result value',this.state.searchResult)
                 // OVER RIDDING STATE WITH SEARCH RESULT 
                 this.props.handleData(this.state.searchResult)
                 //
@@ -66,7 +60,6 @@ class SearchBar extends Component {
             console.log(err)
         })
 
-        console.log('value of e',e)
         // TO REFREASH SEARCH NOTIFICATION 
        
         //
@@ -76,7 +69,7 @@ class SearchBar extends Component {
     render() {
         return(
             <div className="field-container">
-                {this.state.searchIsReady? <p className="search-notification">{`Search result for ${this.state.searchString}` }</p> : ''}
+                {this.state.searchIsReady? <p className="search-notification landing-animation">{`Search result for ${this.state.searchString}` }</p> : ''}
                 <form onSubmit={this.handleSearch} className="field-wrapper">
                     <div className="search-icon-wrapper p-2"> 
                       <BsSearch />

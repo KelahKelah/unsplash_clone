@@ -11,14 +11,23 @@ class SinglePhoto extends Component {
         super(props)
         this.state = {
             singlePhoto: {},
-            loader: false
+            loader: false,
+            pageNotFound: false
         }
     }
 
     componentDidMount() {
-        const { match: { params } } = this.props;
+        // const { match: { params } } = this.props;
+        const { params } = this.props.match;
+     
         // SETTING LOADER FOR API CALL
-        this.setState({loader:true})
+            this.setState({loader:true})
+
+        // ASK JOSH ABOUT SET TIME OUT 
+        // setTimeout=()=> {
+        //     this.setState({loader:true})
+
+        // , (2000)}
 
         // CONFRIMATION FOR TOKEN BEFORE AXIOS CALL USING AXIOS INTERCEPTORS 
         // Axios.interceptors.request.use((req) => {
@@ -27,19 +36,30 @@ class SinglePhoto extends Component {
         //         console.log('passed security check')
         //     }
         // })
+        Axios.interceptors.request.use(req => {
+            console.log(`${req.method} ${req.url}`);
+            // Important: request interceptors **must** return the request.
+            return req;
+          });
+
+  
         Axios.get(`/photos/${params.id}`)
         .then((res) => {
             this.setState({singlePhoto: {...res.data}})
             this.setState({loader: false})
         }).catch((err) => {
             if(err) {
-                console.log(err)
+                // Axios.interceptors.
+                this.setState({loader: false})
+                this.setState({pageNotFound: true})
             }
         })
     }
     render() {
+        // OBJECT DISTRUCTURING TO ACCESS SINGLE PHOTO 
         const {urls, user}  = this.state.singlePhoto;
-        return this.state.loader? (<Skeleton className="single-photo-wrapper-loader" width="50vw" height="50vh" />) : (
+        return this.state.loader? (<Skeleton className="single-photo-wrapper-loader" width="50vw" height="50vh" />) 
+        : this.state.pageNotFound? (<p>Something went wrong</p>) : (
             <div className="single-photo-wrapper">
                 <div className="photo-flex">
                 {/* <span className="close"></span> */}
