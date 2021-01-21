@@ -27,10 +27,7 @@
 .App-link {
   color: #61dafb;
 }
-.img-card {
-  width: 150px;
-  height: 150px;
-}
+
 .par {
   width: 100rem; 
   display: flex;
