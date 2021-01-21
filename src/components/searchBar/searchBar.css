@@ -1,23 +1,24 @@
-.searchBar {
-    width: 70%;
-    border-style:none;
-    border-radius: 3px;
-    padding: 0.9rem;
-}
-
 .field-wrapper {
     display: flex;
     justify-content: center;
     margin: auto;
-    width: 80%;
+    width: 70%;
+}
+.searchBar {
+    width: 100%;
+    border-style:none;
+    border-radius: 3px;
+    padding: 0.9rem;
 }
 .search-icon-wrapper {
     background-color:#fff;
     display: flex;
     align-items: center;
 }
-
-/* ANIMATION  */
+.search-result-notification {
+    font-size: 1.6em;
+}
+/* LANDING ANIMATION  */
 .landing-animation {
     animation: fadeInAnimation ease 2s;
     animation-iteration-count: 1;

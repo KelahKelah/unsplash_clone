@@ -69,9 +69,9 @@ class SearchBar extends Component {
     render() {
         return(
             <div className="field-container">
-                {this.state.searchIsReady? <p className="search-notification landing-animation">{`Search result for ${this.state.searchString}` }</p> : ''}
+                {this.state.searchIsReady? <p className="search-result-notification landing-animation">{`Search result for ${this.state.searchString}` }</p> : ''}
                 <form onSubmit={this.handleSearch} className="field-wrapper">
-                    <div className="search-icon-wrapper p-2"> 
+                    <div className="search-icon-wrapper pl-3"> 
                       <BsSearch />
                     </div>
 
@@ -79,7 +79,6 @@ class SearchBar extends Component {
                     {/* <input type="text" className="searchBar" placeholder="key" onKeyPress={this.handleKeyPress} /> */}
                    
                 </form>
-
             </div>
         )
     }
