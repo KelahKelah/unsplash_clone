@@ -7,6 +7,7 @@ import Axios from 'axios';
 
 const Login = (props) => {
 const [showPassword, setShowPassword] = useState(false);
+const [loginDetail, setLoginDetail] = useState();
 const [tokenId, setTokenId] = useState('');
 
 
@@ -14,11 +15,16 @@ const [tokenId, setTokenId] = useState('');
     setShowPassword(true)
     }
 
+    // GOOGLE LOGIN 
     const responseGoogle = async (res) => {
         Axios.defaults.headers.common['Authorization'] = "";
+
         const resp = await res.tokenId
         console.log('resolved tokenid',resp)
-        Axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${resp}`)
+        
+        Axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${resp}`, {
+            'Access-Control-Allow-Origin' : 'https://60095ecf2113e3b03ed2cb39--gallant-euler-315628.netlify.app',
+        })
         .then((res) => {
             console.log('getting hd',res)
         }).catch((err) => {
@@ -27,11 +33,45 @@ const [tokenId, setTokenId] = useState('');
         })
     }
 
+    const errorGoogle = async (err) => {
+
+        console.log('error google',err)
+    }
+
+
     const getToken = () => {
         // setTokenId(tokenId);
         console.log('value tokenidddddd',tokenId);
         // console.log('value tokenidddddd',tokenId);
     }
+
+    const handleChange = () => {
+        
+    }
+
+    // PASSWORD STRENGTH VALIDATION 
+    const validatePasswordStrength = () => {
+
+        // function passwordChanged() {
+        //     // let strength = document.getElementById('strength');
+        //     let strongRegex = new RegExp("^(?=.{14,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+        //     let mediumRegex = new RegExp("^(?=.{10,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+        //     let enoughRegex = new RegExp("(?=.{8,}).*", "g");
+        //     // let pwd = document.getElementById("password");
+        //     if (pwd.value.length == 0) {
+        //         strength.innerHTML = 'Type Password';
+        //     } else if (false == enoughRegex.test(pwd.value)) {
+        //         strength.innerHTML = 'More Characters';
+        //     } else if (strongRegex.test(pwd.value)) {
+        //         strength.innerHTML = '<span style="color:green">Strong!</span>';
+        //     } else if (mediumRegex.test(pwd.value)) {
+        //         strength.innerHTML = '<span style="color:orange">Medium!</span>';
+        //     } else {
+        //         strength.innerHTML = '<span style="color:red">Weak!</span>';
+        //     }
+        // }
+    }
+    //
 
     // useEffect (() => {
     //     // console.log('value tokenid inside effect',tokenId);
@@ -71,7 +111,7 @@ const [tokenId, setTokenId] = useState('');
                     clientId="153316680024-56hc2h4pk0sjsbhm218801lummqm4523.apps.googleusercontent.com"
                     buttonText="Login with google"
                     onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
+                    onFailure={errorGoogle}
                     cookiePolicy={'single_host_origin'}
                     isSignedIn={true}
                     onClick={getToken}
