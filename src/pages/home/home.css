@@ -77,6 +77,19 @@ margin : 15px
     /* left: 16px; */
     font-weight: 900 ;
 }
+.category {
+    width: 25%;
+    margin: auto;
+    border-radius: 3rem;
+    border: solid 1px #b4cce4;
+    position: relative;
+    bottom: 80px;
+    color: #fff;
+    font-weight: 500;
+}
+.comment-field {
+    border-style: none;
+}
 .search-notification {
     font-weight: 900;
 }
@@ -87,8 +100,8 @@ margin : 15px
     border: 1px solid black;
 }
 .pagination-button {
-     background-color: #c7d9eb;
-     border: 2px solid #fff;
+     /* background-color: #c7d9eb; */
+     border: 1px solid #c7d9eb;;
      border-radius: 3%;
 }
 /* LANDING ANIMATION  */
