@@ -65,7 +65,12 @@ class Home extends Component {
   };
 
   // HANDLES PICTURE LIKES 
-  handlePhotoLikes = () => {
+  handlePhotoLikes = (id) => {
+    Axios.post(`/photos/:${id}/like`).then((res)=> {
+      console.log('like response',res)
+    }).catch((err) => {
+      console.log(err)
+    })
     this.setState({liked: true})
   }
 
@@ -130,16 +135,17 @@ class Home extends Component {
                         }}
                       />
                       <p className="name-text">{`${item.user.first_name} ${item.user.last_name}`}</p>
+                      <p className="category">music</p>
 
                       <div className="d-flex action-wrapper mb-4">
                         <div className="icon-wrapper">
                           <FaTimes className="action-icon" onClick={()=>{this.handlePhotoDelete(item.id)}} />
                         </div>
                         <div className="icon-wrapper">
-                          <FaCommentDots className="action-icon" />
+                          <FaCommentDots className="action-icon" data-toggle="modal" data-target="#exampleModal"/>
                         </div>
                         <div className="icon-wrapper" onClick={this.handlePhotoLikes} >
-                          {this.state.liked? <FaHeart className="after-action-icon" /> : <FaHeart className="action-icon" /> }
+                          {this.state.liked? <FaHeart className="after-action-icon landing-animation" /> : <FaHeart className="action-icon" /> }
                         </div>
                       </div>
                     </div>
@@ -150,10 +156,35 @@ class Home extends Component {
         )
         }
 
-        {/* PAGINATION */}
+        {/* COMMENT MODAL STARTS */}
+          {/* <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Launch demo modal
+          </button> */}
+
+          <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLabel">Add a comment</h5>
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <input type="text" className="w-100 comment-field" />
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-primary">Save comment</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        {/* COMMENT MODAL ENDS  */}
+
+        {/* PAGINATION BUTTON*/}
         <div className="my-5">
         <button type="button" className="btn btn-default pagination-button" onClick={()=>{this.getAllPhotos(this.state.pageNumber)}} >Prev</button>
-
           {/* <button type="button" className="btn btn-default pagination-button" onClick={()=>{this.getAllPhotos(this.state.pageNumber)}} >{this.state.pageNumber === 1 ? <p className="yellow">Prev</p> : this.state.pageNumber > 1? <p className="white">Prev</p> : null}</button> */}
           {/* <button type="button" className="btn btn-default pagination-button" onClick={()=>{this.getAllPhotos(++this.state.pageNumber)}} >{this.state.pageNumber}</button> */}
           <button type="button" className="btn btn-default pagination-button" onClick={()=>{this.getAllPhotos(this.state.pageNumber+1)}} >Next</button>
