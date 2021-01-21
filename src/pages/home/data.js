@@ -1,0 +1,1 @@
+export const loaderCount = [1,2,3,4];
