@@ -4,6 +4,7 @@ import Axios from "axios";
 import "./home.css";
 import Skeleton from "react-loading-skeleton";
 import SearchBar from "../../components/searchBar/searchBar";
+import Navigation from '../../components/navigation/navigation';
 import {FaHeart, FaCommentDots, FaTimes} from 'react-icons/fa';
 
 class Home extends Component {
@@ -97,9 +98,14 @@ class Home extends Component {
     return (
       <div className="home-wrapper">
         <div className="container search-bar-wrapper">
-          <div className="">
+          <div>
             <SearchBar data={this.state.data} handleData={this.handleData} />
           </div>
+ 
+          <div>
+            <Navigation />
+          </div>
+          
         </div>
         {
           // STATEMENT CHECKS IF LAODER IS TRUE 

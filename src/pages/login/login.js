@@ -47,7 +47,7 @@ const [tokenId, setTokenId] = useState('');
 
     return(
         <div className="login-wrapper">
-            <div className="login-container"> 
+            <div className="login-container pt-3"> 
             <h4>Login to your account</h4>
             <form>
                 <div>
@@ -75,7 +75,6 @@ const [tokenId, setTokenId] = useState('');
                     cookiePolicy={'single_host_origin'}
                     isSignedIn={true}
                     onClick={getToken}
-                    
                     />
                 </div>
 

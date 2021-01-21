@@ -1,26 +1,25 @@
 .search-bar-wrapper {
     background-color: #c7d9eb;
     height: 35%;
-    padding: 4.5rem;
+    padding: 2rem;
     border-radius: 0.2rem;
+    display: flex;
+    justify-content: space-around;
 }
 .img-list-wrapper {
     width: 72%;
     margin: auto;
-    /* background-color: purple; */
 }
 .img-list-container {
     width: 90%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    /* background-color: pink; */
 }
 .item {
     width: 30%;
     margin: 10px auto;
     border: 1px solid #c7d9eb;
-    /* background-color: gold; */
 }
 .imgItem {
     cursor: pointer;
@@ -34,7 +33,6 @@
     opacity: 0.5;
 }
 .action-wrapper {
-    /* background-color: yellow; */
     justify-content: space-around;
 }
 .icon-wrapper {
@@ -53,7 +51,6 @@
     transition: 0.5s;
 }
 .action-icon {
-    /* text-align: center; */
     font-size: 1.6em;
     cursor: pointer;
     color: #fff;
@@ -74,7 +71,6 @@ margin : 15px
     color: #fff;
     position: relative;
     bottom: 70px;
-    /* left: 16px; */
     font-weight: 900 ;
 }
 .category {
@@ -100,7 +96,6 @@ margin : 15px
     border: 1px solid black;
 }
 .pagination-button {
-     /* background-color: #c7d9eb; */
      border: 1px solid #c7d9eb;;
      border-radius: 3%;
 }

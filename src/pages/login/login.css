@@ -8,18 +8,14 @@
 }
 .login-container {
     background-color: #fff;
-    /* border: 2px solid black; */
     width: 30%;
-    height: 50%;
+    height: 55%;
 }
 .label-class {
     margin-right: 300px;
     display: block;
-    /* background-color: pink; */
 }
 .radio-button-label {
-    /* background-color: pink; */
-    /* box-shadow: #c7d9eb; */
     border-style: none;
 }
 .input-field {
