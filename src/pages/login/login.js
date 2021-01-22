@@ -3,12 +3,13 @@ import './login.css';
 import   {Link } from 'react-router-dom';
 import { GoogleLogin } from "react-google-login";
 import {BsFillEyeFill, BsCheckCircle, BsXCircle} from 'react-icons/bs';
+import jwt_decode from 'jwt-decode';
 import Axios from 'axios';
 
 const Login = (props) => {
 const [showPassword, setShowPassword] = useState(false);
-const [loginDetail, setLoginDetail] = useState();
-const [tokenId, setTokenId] = useState('');
+const [decodeToken, setDecodeToken] = useState('');
+const [googleLoginDetail, setGoogleLogin] = useState({email: '', password: ''});
 
 
    const handleShowPassword = () => {
@@ -17,12 +18,14 @@ const [tokenId, setTokenId] = useState('');
 
     // GOOGLE LOGIN 
     const responseGoogle = async (res) => {
-        Axios.defaults.headers.common['Authorization'] = "";
-
-        const resp = await res.tokenId
-        console.log('resolved tokenid',resp)
-        
-        Axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${resp}`, {
+        const token = await res.tokenId
+        const decode = jwt_decode(token);
+        setGoogleLogin({email: decode.email, password: decode.at_hash});
+        // Axios.interceptors.request.use({
+            
+        // })
+        Axios.defaults.headers.common['Authorization'] = `${token}`
+        Axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`, {
             'Access-Control-Allow-Origin' : 'https://60095ecf2113e3b03ed2cb39--gallant-euler-315628.netlify.app',
         })
         .then((res) => {
@@ -34,19 +37,7 @@ const [tokenId, setTokenId] = useState('');
     }
 
     const errorGoogle = async (err) => {
-
         console.log('error google',err)
-    }
-
-
-    const getToken = () => {
-        // setTokenId(tokenId);
-        console.log('value tokenidddddd',tokenId);
-        // console.log('value tokenidddddd',tokenId);
-    }
-
-    const handleChange = () => {
-        
     }
 
     // PASSWORD STRENGTH VALIDATION 
@@ -73,17 +64,6 @@ const [tokenId, setTokenId] = useState('');
     }
     //
 
-    // useEffect (() => {
-    //     // console.log('value tokenid inside effect',tokenId);
-    //     // Axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokenId}`)
-        
-    //     // .then((res) => {
-
-    //     // }).catch((err) => {
-
-    //     // })
-    // }, [tokenId]);
-
 
     return(
         <div className="login-wrapper">
@@ -91,8 +71,8 @@ const [tokenId, setTokenId] = useState('');
             <h4>Login to your account</h4>
             <form>
                 <div>
-                    <label className="label-class">Username </label>
-                    <input className="input-field p-2" type="text" />
+                    <label className="label-class">Email</label>
+                    <input className="input-field p-2" type="email" />
                 </div>
 
                 <div>
@@ -108,13 +88,12 @@ const [tokenId, setTokenId] = useState('');
                 <div className="external-links p-4">
                     <button className="radio-button-label">Forgot Password?</button>
                     <GoogleLogin 
-                    clientId="153316680024-56hc2h4pk0sjsbhm218801lummqm4523.apps.googleusercontent.com"
-                    buttonText="Login with google"
-                    onSuccess={responseGoogle}
-                    onFailure={errorGoogle}
-                    cookiePolicy={'single_host_origin'}
-                    isSignedIn={true}
-                    onClick={getToken}
+                        clientId="153316680024-56hc2h4pk0sjsbhm218801lummqm4523.apps.googleusercontent.com"
+                        buttonText="Login with google"
+                        onSuccess={responseGoogle}
+                        onFailure={errorGoogle}
+                        cookiePolicy={'single_host_origin'}
+                        isSignedIn={true}
                     />
                 </div>
 
